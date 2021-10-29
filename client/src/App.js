@@ -20,7 +20,7 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:3001/graphql',
+  uri: 'https://ancient-journey-29885.herokuapp.com/graphql',
 });
 
 const client = new ApolloClient({

@@ -93,11 +93,11 @@ You’ll need to complete the following tasks in each of these back-end files:
 	[x] `typeDefs.js`: Define the necessary `Query` and `Mutation` types:
 		[x] `Query` type:
 			[-] `me`: Which returns a `User` type.
-		[-] `Mutation` type:
+		[x] `Mutation` type:
 			[x] `login`: Accepts an email and password as parameters; returns an `Auth` type.
 			[x] `addUser`: Accepts a username, email, and password as parameters; returns an `Auth` type.
-			[] `saveBook`: Accepts a book author's array, description, title, bookId, image, and link as parameters; returns a `User` type. (Look into creating what's known as an `input` type to handle all of these parameters!)
-			[] `removeBook`: Accepts a book's `bookId` as a parameter; returns a `User` type.
+			[x] `saveBook`: Accepts a book author's array, description, title, bookId, image, and link as parameters; returns a `User` type. (Look into creating what's known as an `input` type to handle all of these parameters!)
+			[x] `removeBook`: Accepts a book's `bookId` as a parameter; returns a `User` type.
 		[X] `User` type:
 			[X] `_id`
 			[X] `username`
@@ -122,7 +122,7 @@ You'll need to create the following front-end files:
 
 [x] `queries.js`: This will hold the query `GET_ME`, which will execute the `me` query set up using Apollo Server.
 
-[] `mutations.js`:
+[X] `mutations.js`:
 	[X] `LOGIN_USER` will execute the `loginUser` mutation set up using Apollo Server.
 	[X] `ADD_USER` will execute the `addUser` mutation.
 	[X] `SAVE_BOOK` will execute the `saveBook` mutation.
@@ -135,7 +135,7 @@ Additionally, you’ll need to complete the following tasks in each of these fro
 	[x] Use the Apollo `useMutation()` Hook to execute the `SAVE_BOOK` mutation in the `handleSaveBook()` function instead of the `saveBook()` function imported from the `API` file.
 	[x] Make sure you keep the logic for saving the book's ID to state in the `try...catch` block! 
 
-[] `SavedBooks.js`:
+[X] `SavedBooks.js`:
 	[x] Remove the `useEffect()` Hook that sets the state for `UserData`.
 	[x] Instead, use the `useQuery()` Hook to execute the `GET_ME` query on load and save it to a variable named `userData`.
 	[x] Use the `useMutation()` Hook to execute the `REMOVE_BOOK` mutation in the `handleDeleteBook()` function instead of the `deleteBook()` function that's imported from `API` file. (Make sure you keep the `removeBookId()` function in place!)
