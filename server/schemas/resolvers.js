@@ -1,4 +1,3 @@
-// Define the query and mutation functionality to work with the Mongoose models.
 const { AuthenticationError } = require('apollo-server-express');
 const { User, Book } = require('../models');
 const { signToken } = require('../utils/auth');
@@ -13,7 +12,10 @@ const resolvers = {
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('books');
+        const userData = await User.findOne({_id: context.user._id})
+          .select('-_v')
+
+          return userData;
       }
       throw new AuthenticationError('You need to be logged in!');
     },
@@ -26,7 +28,7 @@ Mutation: {
     const token = signToken(user);
     return { token, user };
   },
-  login: async (parent, { email, password }) => {
+  login: async (_parent, { email, password }) => {
     const user = await User.findOne({ email });
 
     if (!user) {
@@ -43,36 +45,31 @@ Mutation: {
 
     return { token, user };
   },
-   saveBook: async (parent, { book }, context) => {
-     console.log("bookData",bookData);
-    Book.push(bookData.book);
-      const result = {
-        success: true,
-        book: bookData.book,
-      };
-      return result;
-    },
-  removeBook: async (parent, { bookId }) => {
-    return Book.findOneAndDelete({ _id: bookId });
+   saveBook: async (parent, { input }, context) => {
+     if (context.user) {
+      return User.findOneAndUpdate(
+        { _id: context.user._id },
+        {
+          $addToSet: { savedBooks: input },
+        },
+        { new: true }
+      )
+      }
+      throw new AuthenticationError('You need to be logged in!');
   },
-},
 
+  removeBook: async (_parent, { bookId }, context) => {
+    if (context.user) {
+      return User.findOneAndUpdate(
+        { _id: context.user._id },
+        { $pull: { savedBooks: { bookId: bookId } } },
+        { new: true }
+      );
+    }
+    throw new AuthenticationError('You need to be logged in!');
+  },
+}
 };
 
 
 module.exports = resolvers;
-
-
-
-/* saveBook: async (parent, { bookData, token }) => {
-  return User.findOneAndUpdate(
-    { _id: context.user._id },
-    {
-      $addToSet: { savedBooks: { bookData } },
-    },
-    {
-      new: true,
-      runValidators: true,
-    }
-  );
-}, */
