@@ -43,21 +43,18 @@ Mutation: {
 
     return { token, user };
   },
-/*   saveBook: async (parent, { bookData, token }) => {
-    return Profile.findOneAndUpdate(
-      { _id: Id },
-      {
-        $addToSet: { Books: book },
-      },
-      {
-        new: true,
-        runValidators: true,
-      }
-    );
+   saveBook: async (parent, { book }, context) => {
+     console.log("bookData",bookData);
+    Book.push(bookData.book);
+      const result = {
+        success: true,
+        book: bookData.book,
+      };
+      return result;
+    },
+  removeBook: async (parent, { bookId }) => {
+    return Book.findOneAndDelete({ _id: bookId });
   },
-  removeBook: async (parent, { profileId }) => {
-    return Profile.findOneAndDelete({ _id: profileId });
-  }, */
 },
 
 };
@@ -66,3 +63,16 @@ Mutation: {
 module.exports = resolvers;
 
 
+
+/* saveBook: async (parent, { bookData, token }) => {
+  return User.findOneAndUpdate(
+    { _id: context.user._id },
+    {
+      $addToSet: { savedBooks: { bookData } },
+    },
+    {
+      new: true,
+      runValidators: true,
+    }
+  );
+}, */

@@ -94,8 +94,8 @@ You’ll need to complete the following tasks in each of these back-end files:
 		[x] `Query` type:
 			[-] `me`: Which returns a `User` type.
 		[-] `Mutation` type:
-			[] `login`: Accepts an email and password as parameters; returns an `Auth` type.
-			[] `addUser`: Accepts a username, email, and password as parameters; returns an `Auth` type.
+			[x] `login`: Accepts an email and password as parameters; returns an `Auth` type.
+			[x] `addUser`: Accepts a username, email, and password as parameters; returns an `Auth` type.
 			[] `saveBook`: Accepts a book author's array, description, title, bookId, image, and link as parameters; returns a `User` type. (Look into creating what's known as an `input` type to handle all of these parameters!)
 			[] `removeBook`: Accepts a book's `bookId` as a parameter; returns a `User` type.
 		[X] `User` type:
@@ -120,11 +120,11 @@ You’ll need to complete the following tasks in each of these back-end files:
 
 You'll need to create the following front-end files:
 
-[] `queries.js`: This will hold the query `GET_ME`, which will execute the `me` query set up using Apollo Server.
+[x] `queries.js`: This will hold the query `GET_ME`, which will execute the `me` query set up using Apollo Server.
 
 [] `mutations.js`:
-	[] `LOGIN_USER` will execute the `loginUser` mutation set up using Apollo Server.
-	[] `ADD_USER` will execute the `addUser` mutation.
+	[X] `LOGIN_USER` will execute the `loginUser` mutation set up using Apollo Server.
+	[X] `ADD_USER` will execute the `addUser` mutation.
 	[] `SAVE_BOOK` will execute the `saveBook` mutation.
 	[] `REMOVE_BOOK` will execute the `removeBook` mutation.
 Additionally, you’ll need to complete the following tasks in each of these front-end files:
@@ -140,9 +140,8 @@ Additionally, you’ll need to complete the following tasks in each of these fro
 	[] Instead, use the `useQuery()` Hook to execute the `GET_ME` query on load and save it to a variable named `userData`.
 	[] Use the `useMutation()` Hook to execute the `REMOVE_BOOK` mutation in the `handleDeleteBook()` function instead of the `deleteBook()` function that's imported from `API` file. (Make sure you keep the `removeBookId()` function in place!)
 
-[] `SignupForm.js`: Replace the `addUser()` functionality imported from the `API` file with the `ADD_USER` mutation functionality.
-
-[] `LoginForm.js`: Replace the `loginUser()` functionality imported from the `API` file with the `LOGIN_USER` mutation functionality.
+[X] `SignupForm.js`: Replace the `addUser()` functionality imported from the `API` file with the `ADD_USER` mutation functionality.
+[X] `LoginForm.js`: Replace the `loginUser()` functionality imported from the `API` file with the `LOGIN_USER` mutation functionality.
 
 ```
 
@@ -166,7 +165,7 @@ This homework is graded based on the following criteria:
 [] Application deployed at live URL.
 [] Application loads with no errors.
 [] Application GitHub URL submitted.
-[] GitHub repository contains application code.
+[X] GitHub repository contains application code.
 
 ### Application Quality: 15%
 
