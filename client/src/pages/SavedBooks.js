@@ -26,13 +26,14 @@ const SavedBooks = () => {
       });
 
       removeBookId(bookId);
+      window.location.assign('/saved');
     } catch (err) {
       console.error(err);
     }
   };
   
   if (!userDataLength) {
-    return <h2>LOADING...</h2>;
+    return <h2>LOADING.</h2>;
   }
 
   return (

@@ -1,5 +1,7 @@
 # 21 MERN: Book Search Engine
 
+https://ancient-journey-29885.herokuapp.com/
+
 ## Your Task
 
 Your assignment this week is emblematic of the fact that most modern websites are driven by two things: data and user demands. This shouldn't come as a surprise, as the ability to personalize user data is the cornerstone of real-world web development today. And as user demands evolve, applications need to be more performant.
@@ -85,14 +87,14 @@ You’ll need to complete the following tasks in each of these back-end files:
 ```
 [x] `server.js`: Implement the Apollo Server and apply it to the Express server as middleware.
 
-[] `auth.js`: Update the auth middleware function to work with the GraphQL API.
+[x] `auth.js`: Update the auth middleware function to work with the GraphQL API.
 
 [x] `Schemas` directory:
 	[X] `index.js`: Export your typeDefs and resolvers.
-	[] `resolvers.js`: Define the query and mutation functionality to work with the Mongoose models. **Hint**: Use the functionality in the `user-controller.js` as a guide.
+	[x] `resolvers.js`: Define the query and mutation functionality to work with the Mongoose models. **Hint**: Use the functionality in the `user-controller.js` as a guide.
 	[x] `typeDefs.js`: Define the necessary `Query` and `Mutation` types:
 		[x] `Query` type:
-			[-] `me`: Which returns a `User` type.
+			[x] `me`: Which returns a `User` type.
 		[x] `Mutation` type:
 			[x] `login`: Accepts an email and password as parameters; returns an `Auth` type.
 			[x] `addUser`: Accepts a username, email, and password as parameters; returns an `Auth` type.
@@ -152,37 +154,37 @@ This homework is graded based on the following criteria:
 ### Technical Acceptance Criteria: 40%
 
 [] Satisfies all of the preceding acceptance criteria plus the following:
-	[] Has an Apollo Server that uses GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
-	[] Use an Apollo Server and apply it to the Express.js server as middleware.
-	[] Include schema settings for resolvers and typeDefs as outlined in the homework instructions.
-	[] Modify the existing authentication middleware to work in the context of a GraphQL API.
-	[] Use an Apollo Provider so that the application can communicate with the Apollo Server.
-	[] Application must be deployed to Heroku.
+	[x] Has an Apollo Server that uses GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
+	[x] Use an Apollo Server and apply it to the Express.js server as middleware.
+	[x] Include schema settings for resolvers and typeDefs as outlined in the homework instructions.
+	[x] Modify the existing authentication middleware to work in the context of a GraphQL API.
+	[x] Use an Apollo Provider so that the application can communicate with the Apollo Server.
+	[x] Application must be deployed to Heroku.
 
 
 ### Deployment: 32%
 
-[] Application deployed at live URL.
+[x] Application deployed at live URL.
 [] Application loads with no errors.
-[] Application GitHub URL submitted.
+[x] Application GitHub URL submitted.
 [X] GitHub repository contains application code.
 
 ### Application Quality: 15%
 
-[] User experience is intuitive and easy to navigate.
-[] User interface style is clean and polished.
-[] Application resembles the mock-up functionality provided in the homework instructions.
+[x] User experience is intuitive and easy to navigate.
+[x] User interface style is clean and polished.
+[x] Application resembles the mock-up functionality provided in the homework instructions.
 
 ### Repository Quality: 13%
 
-[] Repository has a unique name.
-[] Repository follows best practices for file structure and naming conventions.
-[] Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
-[] Repository contains multiple descriptive commit messages.
-[] Repository contains high-quality README file with description, screenshot, and link to the deployed application.
+[x] Repository has a unique name.
+[x] Repository follows best practices for file structure and naming conventions.
+[x] Repository follows best practices for class/id naming conventions, indentation, quality comments, etc.
+[x] Repository contains multiple descriptive commit messages.
+[x] Repository contains high-quality README file with description, screenshot, and link to the deployed application.
 
 ## Review
 
-[] The URL of the functional, deployed application.
-[] The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+[x] The URL of the functional, deployed application.
+[x] The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 ```
