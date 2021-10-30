@@ -2,19 +2,33 @@
 
 https://ancient-journey-29885.herokuapp.com/
 
-## Your Task
 
-Your assignment this week is emblematic of the fact that most modern websites are driven by two things: data and user demands. This shouldn't come as a surprise, as the ability to personalize user data is the cornerstone of real-world web development today. And as user demands evolve, applications need to be more performant.
+## Table of Contents
+- [Description](#Description)
+- [Packages Used](#Packages-Used)
+- [User Story](#User-Story)
+- [Acceptance Criteria](#Acceptance-Criteria)
+- [Mock-Up](#Mock-Up)
+- [Grading Requirements](#Grading-Requirements)
+- [Questions](#questions)
 
-This week, you’ll take starter code with a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack with a React front end, MongoDB database, and Node.js/Express.js server and API. It's already set up to allow users to save book searches to the back end. 
+## Description
 
-To complete the assignment, you’ll need to do the following:
+Take starter code with a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack with a React front end, MongoDB database, and Node.js/Express.js server and API. 
 
-1. Set up an Apollo Server to use GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
-2. Modify the existing authentication middleware so that it works in the context of a GraphQL API.
-3. Create an Apollo Provider so that requests can communicate with an Apollo Server.
-4. Deploy your application to Heroku with a MongoDB database using MongoDB Atlas. Use the [Deploy with Heroku and MongoDB Atlas](https://coding-boot-camp.github.io/full-stack/mongodb/deploy-with-heroku-and-mongodb-atlas) walkthrough for instructions.
+Apollo Server to use GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.Modified the existing authentication middleware so that it works in the context of a GraphQL API. Created an Apollo Provider so that requests can communicate with an Apollo Server. Deployed application to Heroku with a MongoDB database using MongoDB Atlas.
 
+
+## Packages Used
+
+    apollo-server-express & apollo/client
+		react, react-dom, react-router-dom, react-scripts
+    graphql
+    express
+    mongoose
+    bcrypt jwt-decode jsonwebtoken
+    bootstrap & react-bootstrap
+		concurrently
 
 ## User Story
 
@@ -61,91 +75,9 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 ## Mock-Up
 
-Let's start by revisiting the web application's appearance and functionality.
-
-As you can see in the following animation, a user can type a search term (in this case, "star wars") in a search box and the results appear:
-
 ![Animation shows "star wars" typed into a search box and books about Star Wars appearing as results.](./Assets/21-mern-homework-demo-01.gif)
-
-The user can save books by clicking "Save This Book!" under each search result, as shown in the following animation:
-
 ![Animation shows user clicking "Save This Book!" button to save books that appear in search results. The button label changes to "Book Already Saved" after it is clicked and the book is saved.](./Assets/21-mern-homework-demo-02.gif)
-
-A user can view their saved books on a separate page, as shown in the following animation:
-
 ![The Viewing Lernantino's Books page shows the books that the user Lernaninto has saved.](./Assets/21-mern-homework-demo-03.gif)
-
-
-## Getting Started
-
-In order for this application to use a GraphQL API, you’ll need to refactor the API to use GraphQL on the back end and add some functionality to the front end. The following sections contain details about the files you’ll need to modify on the back end and the front end.
-**Important**: Make sure to study the application before building upon it. Better yet, start by making a copy of it. It's already a working application&mdash;you're converting it from RESTful API practices to a GraphQL API.
-
-### Back-End Specifications
-
-You’ll need to complete the following tasks in each of these back-end files:
-```
-[x] `server.js`: Implement the Apollo Server and apply it to the Express server as middleware.
-
-[x] `auth.js`: Update the auth middleware function to work with the GraphQL API.
-
-[x] `Schemas` directory:
-	[X] `index.js`: Export your typeDefs and resolvers.
-	[x] `resolvers.js`: Define the query and mutation functionality to work with the Mongoose models. **Hint**: Use the functionality in the `user-controller.js` as a guide.
-	[x] `typeDefs.js`: Define the necessary `Query` and `Mutation` types:
-		[x] `Query` type:
-			[x] `me`: Which returns a `User` type.
-		[x] `Mutation` type:
-			[x] `login`: Accepts an email and password as parameters; returns an `Auth` type.
-			[x] `addUser`: Accepts a username, email, and password as parameters; returns an `Auth` type.
-			[x] `saveBook`: Accepts a book author's array, description, title, bookId, image, and link as parameters; returns a `User` type. (Look into creating what's known as an `input` type to handle all of these parameters!)
-			[x] `removeBook`: Accepts a book's `bookId` as a parameter; returns a `User` type.
-		[X] `User` type:
-			[X] `_id`
-			[X] `username`
-			[X] `email`
-			[X] `bookCount`
-			[X] `savedBooks` (This will be an array of the `Book` type.)
-		[X] `Book` type:
-			[X] `bookId` (Not the `_id`, but the book's `id` value returned from Google's Book API.)
-			[X] `authors` (An array of strings, as there may be more than one author.)
-			[X] `description`
-			[X] `title`
-			[X] `image`
-			[X] `link`
-		[X] `Auth` type:
-			[X] `token`
-			[X] `user` (References the `User` type.)
-
-
-### Front-End Specifications
-
-You'll need to create the following front-end files:
-
-[x] `queries.js`: This will hold the query `GET_ME`, which will execute the `me` query set up using Apollo Server.
-
-[X] `mutations.js`:
-	[X] `LOGIN_USER` will execute the `loginUser` mutation set up using Apollo Server.
-	[X] `ADD_USER` will execute the `addUser` mutation.
-	[X] `SAVE_BOOK` will execute the `saveBook` mutation.
-	[X] `REMOVE_BOOK` will execute the `removeBook` mutation.
-Additionally, you’ll need to complete the following tasks in each of these front-end files:
-
-[x] `App.js`: Create an Apollo Provider to make every request work with the Apollo Server.
-
-[x] `SearchBooks.js`:
-	[x] Use the Apollo `useMutation()` Hook to execute the `SAVE_BOOK` mutation in the `handleSaveBook()` function instead of the `saveBook()` function imported from the `API` file.
-	[x] Make sure you keep the logic for saving the book's ID to state in the `try...catch` block! 
-
-[X] `SavedBooks.js`:
-	[x] Remove the `useEffect()` Hook that sets the state for `UserData`.
-	[x] Instead, use the `useQuery()` Hook to execute the `GET_ME` query on load and save it to a variable named `userData`.
-	[x] Use the `useMutation()` Hook to execute the `REMOVE_BOOK` mutation in the `handleDeleteBook()` function instead of the `deleteBook()` function that's imported from `API` file. (Make sure you keep the `removeBookId()` function in place!)
-
-[X] `SignupForm.js`: Replace the `addUser()` functionality imported from the `API` file with the `ADD_USER` mutation functionality.
-[X] `LoginForm.js`: Replace the `loginUser()` functionality imported from the `API` file with the `LOGIN_USER` mutation functionality.
-
-```
 
 ## Grading Requirements
 ```md
@@ -153,7 +85,7 @@ This homework is graded based on the following criteria:
 
 ### Technical Acceptance Criteria: 40%
 
-[] Satisfies all of the preceding acceptance criteria plus the following:
+[x] Satisfies all of the preceding acceptance criteria plus the following:
 	[x] Has an Apollo Server that uses GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.
 	[x] Use an Apollo Server and apply it to the Express.js server as middleware.
 	[x] Include schema settings for resolvers and typeDefs as outlined in the homework instructions.
@@ -161,12 +93,11 @@ This homework is graded based on the following criteria:
 	[x] Use an Apollo Provider so that the application can communicate with the Apollo Server.
 	[x] Application must be deployed to Heroku.
 
-
 ### Deployment: 32%
 
 [x] Application deployed at live URL.
-[] Application loads with no errors.
-[x] Application GitHub URL submitted.
+[X] Application loads with no errors.
+[X] Application GitHub URL submitted.
 [X] GitHub repository contains application code.
 
 ### Application Quality: 15%
@@ -188,3 +119,7 @@ This homework is graded based on the following criteria:
 [x] The URL of the functional, deployed application.
 [x] The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 ```
+
+## Questions
+[https://github.com/Dspenn](https://github.com/Dspenn)
+- Email for any additional questions  DerekStander@gmail.com
