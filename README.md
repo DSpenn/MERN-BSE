@@ -1,9 +1,7 @@
 # 21 MERN: Book Search Engine
 
-https://ancient-journey-29885.herokuapp.com/
-
-
 ## Table of Contents
+- [Heroku Deployment](https://ancient-journey-29885.herokuapp.com/).
 - [Description](#Description)
 - [Packages Used](#Packages-Used)
 - [User Story](#User-Story)
@@ -17,6 +15,7 @@ https://ancient-journey-29885.herokuapp.com/
 Take starter code with a fully functioning Google Books API search engine built with a RESTful API, and refactor it to be a GraphQL API built with Apollo Server. The app was built using the MERN stack with a React front end, MongoDB database, and Node.js/Express.js server and API. 
 
 Apollo Server to use GraphQL queries and mutations to fetch and modify data, replacing the existing RESTful API.Modified the existing authentication middleware so that it works in the context of a GraphQL API. Created an Apollo Provider so that requests can communicate with an Apollo Server. Deployed application to Heroku with a MongoDB database using MongoDB Atlas.
+[Heroku Deployment](https://ancient-journey-29885.herokuapp.com/).
 
 
 ## Packages Used

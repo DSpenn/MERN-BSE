@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import {
+  Jumbotron,
+  Container,
+  CardColumns,
+  Card,
+  Button,
+} from 'react-bootstrap';
+
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_ME } from '../utils/queries';
 import Auth from '../utils/auth';
@@ -8,15 +15,17 @@ import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
   const [userDataState, setUserData] = useState({});
-  const [ removeBook, { error } ] = useMutation(REMOVE_BOOK);
-  const { loading, data, refetch } = useQuery(QUERY_ME);
+  const [removeBook, { error }] = useMutation(REMOVE_BOOK, {
+    refetchQueries: [QUERY_ME],
+  });
+  const { loading, data } = useQuery(QUERY_ME);
   const userData = data?.me || [];
   const userDataLength = Object.keys(userData).length;
 
-  useEffect(() => {
+  /*   useEffect(() => {
     refetch();
-  }, []);
-  
+  }, []); */
+
   const handleDeleteBook = async (bookId) => {
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -25,24 +34,24 @@ const SavedBooks = () => {
     }
 
     try {
-      const {response} = await removeBook({
-        variables:{ bookId }
+      const { response } = await removeBook({
+        variables: { bookId },
       });
 
       removeBookId(bookId);
-      refetch();
+      //refetch();
     } catch (err) {
       console.error(err);
     }
   };
-  
+
   if (!userDataLength) {
     return <h2>LOADING.</h2>;
   }
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      <Jumbotron fluid className="text-light bg-dark">
         <Container>
           <h1>Viewing saved books!</h1>
         </Container>
@@ -50,19 +59,30 @@ const SavedBooks = () => {
       <Container>
         <h2>
           {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
+            ? `Viewing ${userData.savedBooks.length} saved ${
+                userData.savedBooks.length === 1 ? 'book' : 'books'
+              }:`
             : 'You have no saved books!'}
         </h2>
         <CardColumns>
           {userData.savedBooks.map((book) => {
             return (
-              <Card key={book.bookId} border='dark'>
-                {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null}
+              <Card key={book.bookId} border="dark">
+                {book.image ? (
+                  <Card.Img
+                    src={book.image}
+                    alt={`The cover for ${book.title}`}
+                    variant="top"
+                  />
+                ) : null}
                 <Card.Body>
                   <Card.Title>{book.title}</Card.Title>
-                  <p className='small'>Authors: {book.authors}</p>
+                  <p className="small">Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
+                  <Button
+                    className="btn-block btn-danger"
+                    onClick={() => handleDeleteBook(book.bookId)}
+                  >
                     Delete this Book!
                   </Button>
                 </Card.Body>
