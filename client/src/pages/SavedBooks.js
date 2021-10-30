@@ -7,9 +7,10 @@ import { REMOVE_BOOK } from '../utils/mutations';
 import { removeBookId } from '../utils/localStorage';
 
 const SavedBooks = () => {
+  //const [userDataState, setUserData] = useState([]);
   const [ removeBook, { error } ] = useMutation(REMOVE_BOOK);
   const { loading, data } = useQuery(QUERY_ME);
-  const userData = data?.me || {};
+  const userData = data?.me || [];
   const userDataLength = Object.keys(userData).length;
   
 
@@ -21,12 +22,14 @@ const SavedBooks = () => {
     }
 
     try {
-      const { response } = await removeBook({
+      const response = await removeBook({
         variables:{ bookId }
       });
-
+      const updatedBookList = await response;
+      //console.log("updatedBookList", updatedBookList);
       removeBookId(bookId);
-      location.reload();
+      //setUserData(updatedBookList);
+      window.location.reload();
     } catch (err) {
       console.error(err);
     }
